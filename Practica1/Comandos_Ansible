@@ -1,0 +1,29 @@
+Comandos Ansible
+----------------
+
+Requisitos
+----------
+
+- Añadir devops3 al inventario y /etc/hosts de la máquina ansible
+- Levantar la máquina devops3 con vagrant
+- Tener levantado el nodo de ansible
+
+Ejecución de módulos
+--------------------
+--Ping 
+#ansible -i entornos/local -m ping devops3.local
+
+--Yum 
+#ansible -i entornos/local/hosts -m "yum" -a "name=httpd state=latest" devops3.local
+
+--Service 
+#ansible -i entornos/local -m "service" -a "name=httpd state=started" devops3.local
+
+--User
+ansible -i entornos/local -m "user" -a "name=user1 state=present" devops3.local
+
+--comandos 
+ansible -i entornos/local -a "ps auxf" devops3.local
+
+-- Facts
+ansible -i entornos/local/hosts -m "setup" devops3.local 

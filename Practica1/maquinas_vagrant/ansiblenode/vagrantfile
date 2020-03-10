@@ -1,0 +1,11 @@
+Vagrant::Config.run do |config|
+  config.vm.define :ansiblenode do |ansiblenode|
+          ansiblenode.vm.box       = "geerlingguy/centos7"
+          ansiblenode.vm.host_name = "ansiblenode"
+          ansiblenode.vm.network :hostonly, "192.168.30.10"
+          ansiblenode.vm.provision :shell, inline: <<-SHELL
+		      yum install -y vim epel-release ansible rsync git python-pip python-ldap
+			  yum update ansible -y
+		  SHELL
+  end
+end
